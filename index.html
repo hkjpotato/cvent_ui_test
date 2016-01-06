@@ -19,13 +19,15 @@
 
 		</div>
 		<div id="widget-bottom-box">
-			<div class="widget-bottom-content" ng-repeat="item in forecast" myrepeatonload>
-				{{item.day}}<br>
-				<span class="forecast-temp">{{item.high}}&deg / {{item.low}}&deg</span>
-			</div>
+		      <ul>
+		        <li class="widget-bottom-content" ng-repeat="item in forecast" myrepeatonload>
+		          {{item.day}}<br>
+		          <span class="forecast-temp">{{item.high}}&deg / {{item.low}}&deg</span>
+		        </li>
+		      </ul>
 		</div>
 	</div>
-	
+
 	<!-- LOAD My CSS -->
     <link rel="stylesheet" type="text/css" href="./widget.css">
 
