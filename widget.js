@@ -45,13 +45,12 @@ function myController($scope, $http) {
 		$scope.widgetTitle = words[2]+words[3];
 
 	    //get current temperature and description
-	    var description = item.description;
-
 	    var condition = item.condition;
 	    $scope.currentTemp = condition.temp;
 	    $scope.conditionDescrp = condition.text;
 
 	    //use regex to fetch the img src of the icon
+	    var description = item.description;	    
 	    var regex = /<img[^>]+src="(http:\/\/[^">]+)"/g;
 		$scope.iconSrc = regex.exec(description)[1];
 
