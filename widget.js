@@ -24,7 +24,6 @@ myWidget.directive('myrepeatonload', function() {
 });
 var apiURL = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20location%3D%2222102%22&format=json";
 function myController($scope, $http) {
-	// Simple GET request example:
 	$http({
 	  method: 'GET',
 	  url: apiURL

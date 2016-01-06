@@ -85,6 +85,10 @@
 		font-size: 80%;
 	}
 
+	.widget-bottom-content:hover {
+	  font-size: 100%;
+	}
+
 	#widget-bottom-box.ready .widget-bottom-content:nth-child(1){
 	  -webkit-animation: APPEAR 1s forwards 1s; /* Safari 4+ */
 	  -moz-animation:    APPEAR 1s forwards 1s; /* Fx 5+ */
