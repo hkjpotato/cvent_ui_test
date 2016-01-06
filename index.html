@@ -4,150 +4,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Weather Widget</title>
-
-	<!-- LOAD JQUERY -->
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-	<!-- LOAD ANGULAR -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-	<style type="text/css">
-		#widget-container {
-			position: absolute;
-			width: 310px;
-			height: 160px;
-			top: 50%;
-			left: 50%;
-			margin-top: -80px;
-			margin-left: -155px;
-			border-color: #A8A8A8;
-			border-style: solid;
-    		border-width: 1px;
-			border-radius: 10px;
-    		box-shadow: 8px 8px 5px #888888;
-    		font-family: helvetica;
-		}
-
-		#widget-title {
-			width: 310px;
-			height: 30px;
-			font-size: 150%;
-			padding: 5px 0 0 10px;
-		}
-
-		#widget-main-box {
-			width: 310px;
-			height: 80px;
-		}
-
-		#widget-bottom-box {
-			position: absolute;
-			width: 300px;
-			height: 50px;
-			margin-left: 5px;
-			bottom: 0;
-			/*background-color: red;*/
-		}
-
-		.widget-bottom-content {
-			border-right:1px dotted #A8A8A8;
-    		float: left;
-    		width: 60px;
-    		height: 45px;
-    		box-sizing: border-box;
-			text-align: center;
-			padding-top: 8px;
-			font-size: 80%;
-
-          	opacity: 0;
-			/*-webkit-transition: all 1s linear 2s;*/
-			/*-moz-transition: all 1s linear 2s;*/
-			/*transition: all 1s linear 2s;*/
-		}
-
-
-
-		.widget-bottom-content:nth-child(5){
-			border-right:none;
-		}
-
-		.forecast-temp {
-			font-size: 80%;
-		}
-
-		#main-temp {
-			font-size: 400%;
-		}
-
-		.main-content {
-			float: left;
-			margin-left: 10px;
-		}
-		#main-icon-area {
-          	opacity: 0;
-			-webkit-transition: all 1s linear 0s;
-			-moz-transition: all 1s linear 0s;
-			transition: all 1s linear 0s;
-		}
-
-		#description {
-			text-align: center;
-			font-size: 80%;
-		}
-
-		#widget-bottom-box.ready .widget-bottom-content:nth-child(1){
-		  -webkit-animation: APPEAR 1s forwards 1s; /* Safari 4+ */
-		  -moz-animation:    APPEAR 1s forwards 1s; /* Fx 5+ */
-		  -o-animation:      APPEAR 1s forwards 1s; /* Opera 12+ */
-		  animation:         APPEAR 1s forwards 1s;
-		}
-
-		#widget-bottom-box.ready .widget-bottom-content:nth-child(2){
-		  -webkit-animation: APPEAR 1s forwards 1.3s; /* Safari 4+ */
-		  -moz-animation:    APPEAR 1s forwards 1.3s; /* Fx 5+ */
-		  -o-animation:      APPEAR 1s forwards 1.3s; /* Opera 12+ */
-		  animation:         APPEAR 1s forwards 1.3s;
-		}
-		#widget-bottom-box.ready .widget-bottom-content:nth-child(3){
-		  -webkit-animation: APPEAR 1s forwards 1.6s; /* Safari 4+ */
-		  -moz-animation:    APPEAR 1s forwards 1.6s; /* Fx 5+ */
-		  -o-animation:      APPEAR 1s forwards 1.6s; /* Opera 12+ */
-		  animation:         APPEAR 1s forwards 1.6s;
-		}
-
-		#widget-bottom-box.ready .widget-bottom-content:nth-child(4){
-		  -webkit-animation: APPEAR 1s forwards 1.9s; /* Safari 4+ */
-		  -moz-animation:    APPEAR 1s forwards 1.9s; /* Fx 5+ */
-		  -o-animation:      APPEAR 1s forwards 1.9s; /* Opera 12+ */
-		  animation:         APPEAR 1s forwards 1.9s;
-		}
-		#widget-bottom-box.ready .widget-bottom-content:nth-child(5){
-		  -webkit-animation: APPEAR 1s forwards 2.2s; /* Safari 4+ */
-		  -moz-animation:    APPEAR 1s forwards 2.2s; /* Fx 5+ */
-		  -o-animation:      APPEAR 1s forwards 2.2s; /* Opera 12+ */
-		  animation:         APPEAR 1s forwards 2.2s;
-		}
-
-
-		@-webkit-keyframes APPEAR {
-		  0%   { opacity: 0; }
-		  100% { opacity: 1; }
-		}
-		@-moz-keyframes APPEAR {
-		  0%   { opacity: 0; }
-		  100% { opacity: 1; }
-		}
-		@-o-keyframes APPEAR {
-		  0%   { opacity: 0; }
-		  100% { opacity: 1; }
-		}
-		@keyframes APPEAR {
-		  0%   { opacity: 0; }
-		  100% { opacity: 1; }
-		}
-
-
-	</style>
 </head>
 
 <body>
@@ -169,83 +25,19 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- LOAD My CSS -->
+    <link rel="stylesheet" type="text/css" href="./widget.css">
 
+	<!-- LOAD JQUERY -->
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-	<script type="text/javascript">
-		var myWidget = angular.module('myWidget', []);
-
-		myWidget.directive('myimageonload', function() {
-		    return {
-		        restrict: 'A',
-		        link: function(scope, element, attrs) {
-		            element.bind('load', function() {
-		                // alert('image is loaded');
-		                $("#main-icon-area").css("opacity", 1);
-		            });
-		        }
-		    };
-		});
-
-		myWidget.directive('myrepeatonload', function() {
-			return function(scope, element, attrs) {
-				if (scope.$last) {
-					// console.log("done");
-		            $("#widget-bottom-box").toggleClass("ready");
-
-
-				}
-			}
-		});
-		var apiURL = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20location%3D%2222102%22&format=json";
-		function myController($scope, $http) {
-			// Simple GET request example:
-			$http({
-			  method: 'GET',
-			  url: apiURL
-			}).then(function successCallback(response) {
-			    // this callback will be called asynchronously
-			    // when the response is available
-			    console.log("success");
-			    var data = response.data;
-			    if (!data) {
-			    	alert("something goes wrong!");
-			    	return;
-			    }
-
-			    var item = data.query.results.channel.item;
-
-			    //get the name of the location
-			    var words = item.title.split(" ");
-				$scope.widgetTitle = words[2]+words[3];
-
-			    //get current temperature and description
-			    var description = item.description;
-
-			    var condition = item.condition;
-			    $scope.currentTemp = condition.temp;
-			    $scope.conditionDescrp = condition.text;
-
-			    //use regex to fetch the img src of the icon
-			    var regex = /<img[^>]+src="(http:\/\/[^">]+)"/g;
-				$scope.iconSrc = regex.exec(description)[1];
-
-				//get the forecast info
-				var forecast = item.forecast;
-				$scope.forecast = [];
-				for (var i = 0; i < forecast.length; i++) {
-					$scope.forecast[i] = {};
-					$scope.forecast[i].day = forecast[i].day;
-					$scope.forecast[i].high = forecast[i].high;
-					$scope.forecast[i].low = forecast[i].low;
-				}
-				// document.getElementById("result").innerHTML = description; 
-			  }, function errorCallback(response) {
-			    // called asynchronously if an error occurs
-			    // or server returns response with an error status.
-			    console.log("fail");
-			  });
-		}
-	</script>
+	<!-- LOAD ANGULAR -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+	
+	<!-- LOAD My JS -->
+	<script type="text/javascript" src="./widget.js"></script>
 </body>
 
 </html>
